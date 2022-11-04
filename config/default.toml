@@ -1,0 +1,52 @@
+## go_rest_webserver config file for local environment.
+
+
+[core]
+appEnv                = "local"
+serviceName           = "go-rest-webserver"
+hostname              = "0.0.0.0"
+port                  = 8099
+shutdownTimeout       = 60
+shutdownDelay         = 10
+gitCommitHash         = "nil"
+
+[db]
+dialect               = "postgres"
+protocol              = "tcp"
+url                   = "127.0.0.1"
+port                  = "5432"
+username              = "postgres"
+password              = "EkudoH2KiMfdlvis"
+sslMode               = "require"
+name                  = "golang-web-server"
+maxOpenConnections    = 200
+maxIdleConnections    = 10
+connectionMaxLifetime = 10
+
+[promServiceConfig]
+appEnv                = "local"
+serviceName           = "go-rest-webserver"
+hostname              = "0.0.0.0"
+port                  = 8083
+shutdownTimeout       = 60
+shutdownDelay         = 5
+gitCommitHash         = "nil"
+
+[name_client]
+host = "https://api.agify.io/"
+timeout = "10s"
+httpClientName = "go_app_client"
+httpretryattempts = 10
+httpretrywindow = "60ms"
+httpmaxjitterinterval = "2ms"
+[name_client.auth]
+username = ""
+password = ""
+[name_client.httpclient.resiliency]
+maxconcurrentrequests = 5000
+requestvolumethreshold = 5000
+circuitbreakersleepwindow = 5000
+errorpercentthreshold = 5000
+circuitbreakertimeout = 30000
+[name_client.httpclient.httpclient]
+timeout = "10s"
