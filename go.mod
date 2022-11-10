@@ -9,7 +9,7 @@ require (
 	github.com/go-ozzo/ozzo-validation/v4 v4.3.0
 	github.com/gobuffalo/nulls v0.4.1
 	github.com/gojektech/heimdall v5.0.2+incompatible
-	github.com/prometheus/client_golang v1.13.0
+	github.com/prometheus/client_golang v1.13.1
 	github.com/spf13/viper v1.12.0
 	github.com/stretchr/testify v1.7.1
 )
@@ -17,11 +17,13 @@ require (
 require (
 	github.com/afex/hystrix-go v0.0.0-20180502004556-fa1af6a1f4f5 // indirect
 	github.com/andybalholm/brotli v1.0.4 // indirect
+	github.com/ansrivas/fiberprometheus/v2 v2.4.1 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
 	github.com/go-sql-driver/mysql v1.5.0 // indirect
+	github.com/gofiber/adaptor/v2 v2.1.25 // indirect
 	github.com/gofiber/fiber/v2 v2.37.0 // indirect
 	github.com/gofrs/uuid v4.1.0+incompatible // indirect
 	github.com/golang/protobuf v1.5.2 // indirect

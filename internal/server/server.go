@@ -65,7 +65,7 @@ func (s *App) AddMiddleware(middleware interface{}) {
 	s.App.Use(middleware)
 }
 
-func (s *App) AddRoute(route routing.Route) *App {
+func (s *App) AddRoute(route routing.RouteGrp) *App {
 	grpName := route.Group
 	routeGrp := s.App.Group(grpName)
 

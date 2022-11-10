@@ -7,12 +7,13 @@ import (
 	"go-rest-webserver-template/internal/structs"
 )
 
-type IUserServe interface {
+type IUserServer interface {
 	Create(ctx context.Context, user *structs.User) (model.User, error)
-	Get(ctx context.Context, Id uuid.UUID) (model.User, error)
+	Get(ctx context.Context, id uuid.UUID) (*model.User, error)
+	Ops(ctx context.Context, id uuid.UUID)
 }
 
 type IUserCore interface {
 	Create(ctx context.Context, user *structs.User) (model.User, error)
-	Get(ctx context.Context, Id uuid.UUID) (model.User, error)
+	Get(ctx context.Context, id uuid.UUID) (*model.User, error)
 }

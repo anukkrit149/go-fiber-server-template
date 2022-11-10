@@ -9,19 +9,27 @@ import (
 )
 
 type UserServe struct {
-	issuer user.IUserCore
+	issuerCore user.IUserCore
 }
 
-func (u UserServe) Create(ctx context.Context, user *structs.User) (model.User, error) {
+func (u *UserServe) Create(ctx context.Context, user *structs.User) (model.User, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (u UserServe) Get(ctx context.Context, Id uuid.UUID) (model.User, error) {
+func (u *UserServe) Get(ctx context.Context, id uuid.UUID) (*model.User, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func NewUserServe(ctx context.Context, issuer user.IUserCore) (user.IUserServe, error) {
-	return UserServe{issuer: issuer}, nil
+func (u *UserServe) Ops(ctx context.Context, id uuid.UUID) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func NewUserServe(ctx context.Context, issuerCore user.IUserCore) user.IUserServer {
+	userServer := UserServe{
+		issuerCore: issuerCore,
+	}
+	return &userServer
 }
