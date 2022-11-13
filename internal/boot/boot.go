@@ -3,7 +3,8 @@ package boot
 import (
 	"context"
 	"go-rest-webserver-template/internal/config"
-	connection "go-rest-webserver-template/internal/database/connection/service"
+	"go-rest-webserver-template/internal/database/connection"
+	dbservice "go-rest-webserver-template/internal/database/connection/service"
 	"go-rest-webserver-template/internal/handler"
 	"go-rest-webserver-template/internal/routing"
 	"go-rest-webserver-template/internal/server"
@@ -39,17 +40,23 @@ func initServerServices(ctx context.Context, env string) error {
 		return err
 	}
 	//todo: init logger
-	//todo: init Prometheus
-	initControllers(ctx)
-	err = initDatabase(ctx)
+	//Init DB connection
+	dbConn, err := initDatabase(ctx)
 	if err != nil {
 		log.Fatal(err)
 		return err
 	}
+
+	// Init Domains
+	initControllers(ctx, dbConn)
+
+	// Service Layer - HTTP Server
 	app := initAppServer(ctx)
+	// Routes Initialization
 	initializeRouter(app)
 
 	log.Println("Initialization complete")
+	// Listen HTTP layer
 	app.StartServer(strconv.Itoa(config.GetConfig().Core.Port))
 
 	return nil
@@ -64,12 +71,12 @@ func initConfig(env string) error {
 	return err
 }
 
-func initControllers(ctx context.Context) {
-	handler.InitHandlers(ctx)
+func initControllers(ctx context.Context, db connection.DBSelector) {
+	handler.InitHandlers(ctx, db)
 }
-func initDatabase(ctx context.Context) error {
-	_, err := connection.NewDBConnection(ctx, config.GetConfig())
-	return err
+func initDatabase(ctx context.Context) (connection.DBSelector, error) {
+	db, err := dbservice.NewDBConnection(ctx, config.GetConfig())
+	return db, err
 }
 
 func initializeRouter(app server.App) {
